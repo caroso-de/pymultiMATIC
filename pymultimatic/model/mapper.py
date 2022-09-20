@@ -1,4 +1,6 @@
 """Mappers from json to model classes."""
+import logging
+
 from datetime import datetime
 from typing import Any, List, Optional, Tuple
 
@@ -34,7 +36,7 @@ from . import (
 
 _DATE_FORMAT = "%Y-%m-%d"
 _DAYS_OF_WEEK = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
-
+_LOGGER = logging.getLogger("pymultimatic.Mapper")
 
 def map_emf_reports(json) -> List[EmfReport]:
     """Map emf reports"""
@@ -466,7 +468,8 @@ def map_errors(hvac_state) -> List[Error]:
     """Map *errors*."""
     errors = []
     for error in hvac_state.get("body", {}).get("errorMessages", []):
-        if error.get("type") == "ERROR":
+        if error.get("type") != "STATUS":
+            _LOGGER.debug("handling error type %s as error", error.get("type"))
             errors.append(
                 Error(
                     error.get("deviceName"),
