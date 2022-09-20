@@ -7,7 +7,7 @@ with open(path.join(this_directory, "README.md"), encoding="utf-8") as f:
     long_description = f.read()
 
 setup(
-    name="pymultiMATIC",
+    name="pymultiMATIC_caroso",
     version="0.6.7",
     description="Python interface with Vaillant multiMATIC",
     long_description_content_type="text/markdown",
