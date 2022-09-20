@@ -53,7 +53,7 @@ jobs:
       uses: codecov/codecov-action@v1
       if: ${{ always() }}
 
-    - name: Check new pypi version is correct
-      run:
-        (chmod +x .github/check_version.sh && sh .github/check_version.sh)
-      if: ${{ always() }}
+#    - name: Check new pypi version is correct
+#      run:
+#        (chmod +x .github/check_version.sh && sh .github/check_version.sh)
+#      if: ${{ always() }}
