@@ -38,6 +38,7 @@ _DATE_FORMAT = "%Y-%m-%d"
 _DAYS_OF_WEEK = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
 _LOGGER = logging.getLogger("pymultimatic.Mapper")
 
+
 def map_emf_reports(json) -> List[EmfReport]:
     """Map emf reports"""
     reports = []
