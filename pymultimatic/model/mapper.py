@@ -1,4 +1,6 @@
 """Mappers from json to model classes."""
+import logging
+
 from datetime import datetime
 from typing import Any, List, Optional, Tuple
 
@@ -34,7 +36,7 @@ from . import (
 
 _DATE_FORMAT = "%Y-%m-%d"
 _DAYS_OF_WEEK = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
-
+_LOGGER = logging.getLogger("Mapper")
 
 def map_emf_reports(json) -> List[EmfReport]:
     """Map emf reports"""
@@ -466,6 +468,7 @@ def map_errors(hvac_state) -> List[Error]:
     """Map *errors*."""
     errors = []
     for error in hvac_state.get("body", {}).get("errorMessages", []):
+        _LOGGER.debug("got error message ", error.get("type"));
         if error.get("type") != "STATUS":
             errors.append(
                 Error(
