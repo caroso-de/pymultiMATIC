@@ -468,10 +468,9 @@ def map_circulation_alone(raw_circulation, dhw_id: str) -> Optional[Circulation]
 def map_errors(hvac_state) -> List[Error]:
     """Map *errors*."""
     errors = []
-    _LOGGER.error("mapping errors")
     for error in hvac_state.get("body", {}).get("errorMessages", []):
-        _LOGGER.error("got error message %s", error.get("type"))
         if error.get("type") != "STATUS":
+            _LOGGER.debug("handling error type %s as error", error.get("type"))
             errors.append(
                 Error(
                     error.get("deviceName"),
